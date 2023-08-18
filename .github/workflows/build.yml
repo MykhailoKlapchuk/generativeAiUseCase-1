@@ -44,5 +44,6 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"MykhailoKlapchuk_generativeAiUseCase-1" /o:"mykhailoklapchuk" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet build
+          dotnet build ./UC#1/UC#1.sln
+
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
