@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Formats.Asn1;
 using System.Text.Json;
-using System.Xml.Linq;
 using UC_1.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -67,6 +65,14 @@ namespace UC_1.Controllers
             }
 
             return countriesData;
+        }
+        public List<Country> GetNumberOfCountries(int numberOfCountries)
+        {
+            if (numberOfCountries < 1)
+            {
+                return new List<Country>();
+            }
+            return countriesData.GetRange(0, numberOfCountries);
         }
 
         private async void GetCountriesData()
