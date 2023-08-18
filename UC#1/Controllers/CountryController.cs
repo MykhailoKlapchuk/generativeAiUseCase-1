@@ -48,5 +48,9 @@ namespace UC_1.Controllers
         {
             return countries.Where(x => x.Name.Common.Contains(nameFilter, StringComparison.InvariantCultureIgnoreCase)).ToList();
         }
+        public List<Country> GetCountriesFirteredByPopulation(List<Country> countries, int popFilter)
+        {
+            return countries.Where(x => x.Population < (popFilter * 1000000)).ToList();
+        }
     }
 }

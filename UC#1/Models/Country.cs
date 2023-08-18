@@ -181,11 +181,8 @@ namespace UC_1.Models
         [JsonPropertyName("maps")]
         public Maps Maps { get; set; }
         
-        // [JsonPropertyName("population")]
-        // public int Population { get; set; }
-
-        // [JsonPropertyName("gini")]
-        // public Gini Gini { get; set; }
+        [JsonPropertyName("population")]
+        public int Population { get; set; }
 
         /// <summary>
         /// FIFA code.
