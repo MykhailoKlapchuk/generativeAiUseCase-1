@@ -123,7 +123,8 @@ namespace UC_1.Controllers
             {
                 return EmptyCountryList;
             }
-            if (numberOfCountries > countries.Count)
+
+            if (countries != null && numberOfCountries > countries.Count)
             {
                 numberOfCountries = countries.Count;
             }
