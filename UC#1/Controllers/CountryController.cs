@@ -2,57 +2,90 @@
 using System.Text.Json;
 using UC_1.Models;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace UC_1.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class CountryController : ControllerBase
     {
         private const string URL = "https://restcountries.com/v3.1/all";
         private static readonly List<Country> countriesData;
+        private static List<Country> EmptyCountryList => new List<Country>();
 
-        public CountryController()
+        static  CountryController()
         {
             if (countriesData == null)
             {
-                GetCountriesData();
+                countriesData = GetCountriesData().Result;
             }
         }
 
-        // GET: api/<CountryController>
         [HttpGet]
+        [Route("[action]")]
         public async Task<List<Country>> GetCountries(
-            string nameFilter = "not",
+            string nameFilter = null,
             int populationFilter = 0,
-            string nameSort = "not",
+            string nameSort = null,
             int numberOfPages = 0)
         {
-            return countriesData ?? new List<Country>();
+            var result = new List<Country>();
+
+            if (!string.IsNullOrWhiteSpace(nameFilter))
+            {
+                result = GetCountriesFirteredByName(nameFilter);
+            }
+            if (populationFilter != 0)
+            {
+                var popFilteredCountries = GetCountriesFirteredByPopulation(populationFilter);
+                result = result.Count == 0 ? popFilteredCountries : result.Where(x => popFilteredCountries.Contains(x)).ToList();
+            }
+            if (!string.IsNullOrWhiteSpace(nameSort))
+            {
+                var sortedCountries = GetCountriesSortedByName(nameSort);
+                result = result.Count == 0 ? sortedCountries : result.Where(x => sortedCountries.Contains(x)).ToList();
+            }
+            if (numberOfPages != 0)
+            {
+                if (result.Count == 0)
+                {
+                    result = GetNumberOfCountries(numberOfPages);
+                }
+                else
+                {
+                    result = GetNumberOfCountries(numberOfPages, result);
+                }
+            }
+
+            return result;
         }
 
+        [HttpGet]
+        [Route("[action]")]
         public List<Country> GetCountriesFirteredByName(string nameFilter) 
         {
             if (string.IsNullOrEmpty(nameFilter))
             {
-                return countriesData;
+                return EmptyCountryList;
             }
             return countriesData.Where(x => x.Name.Common.Contains(nameFilter, StringComparison.InvariantCultureIgnoreCase)).ToList();
         }
 
+        [HttpGet]
+        [Route("[action]")]
         public List<Country> GetCountriesFirteredByPopulation(int popFilter)
         {
             if (popFilter < 1)
             {
-                return countriesData;
+                return EmptyCountryList;
             }
             return countriesData.Where(x => x.Population < (popFilter * 1000000)).ToList();
         }
 
+        [HttpGet]
+        [Route("[action]")]
         public List<Country> GetCountriesSortedByName(string name)
         {
-            if (string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
                 if (name.ToLower() == "ascend")
                 {
@@ -64,18 +97,21 @@ namespace UC_1.Controllers
                 }
             }
 
-            return countriesData;
+            return EmptyCountryList;
         }
-        public List<Country> GetNumberOfCountries(int numberOfCountries)
+
+        [HttpPost]
+        [Route("[action]")]
+        public List<Country> GetNumberOfCountries(int numberOfCountries, List<Country> countries = null)
         {
             if (numberOfCountries < 1)
             {
-                return new List<Country>();
+                return EmptyCountryList;
             }
-            return countriesData.GetRange(0, numberOfCountries);
+            return countries == null ? countriesData.GetRange(0, numberOfCountries) : countries.GetRange(0, numberOfCountries);
         }
 
-        private async void GetCountriesData()
+        private static async Task<List<Country>> GetCountriesData()
         {
             using (var client = new HttpClient())
             {
@@ -88,10 +124,7 @@ namespace UC_1.Controllers
 
                 var countryDataString = await response.Content.ReadAsStringAsync();
                 var countries = JsonSerializer.Deserialize<List<Country>>(countryDataString);
-                if (countries != null)
-                {
-                    countriesData.AddRange(countries);
-                }
+                return countries ?? EmptyCountryList;
             }
         }
     }
