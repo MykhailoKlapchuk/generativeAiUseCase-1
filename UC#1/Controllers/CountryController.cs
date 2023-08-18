@@ -34,15 +34,30 @@ namespace UC_1.Controllers
             {
                 result = GetCountriesFirteredByName(nameFilter);
             }
+
             if (populationFilter != 0)
             {
                 var popFilteredCountries = GetCountriesFirteredByPopulation(populationFilter);
-                result = result.Count == 0 ? popFilteredCountries : result.Where(x => popFilteredCountries.Contains(x)).ToList();
+                if (result.Count == 0)
+                {
+                    result = popFilteredCountries;
+                }
+                else if(popFilteredCountries.Count > 0)
+                {
+                    result = result.Where(x => popFilteredCountries.Contains(x)).ToList();
+                }
             }
             if (!string.IsNullOrWhiteSpace(nameSort))
             {
                 var sortedCountries = GetCountriesSortedByName(nameSort);
-                result = result.Count == 0 ? sortedCountries : result.Where(x => sortedCountries.Contains(x)).ToList();
+                if (result.Count == 0)
+                {
+                    result = sortedCountries;
+                }
+                else if (sortedCountries.Count > 0)
+                {
+                    result = sortedCountries.Where(x => result.Contains(x)).ToList();
+                }
             }
             if (numberOfPages != 0)
             {
@@ -107,6 +122,10 @@ namespace UC_1.Controllers
             if (numberOfCountries < 1)
             {
                 return EmptyCountryList;
+            }
+            if (numberOfCountries > countries.Count)
+            {
+                numberOfCountries = countries.Count;
             }
             return countries == null ? countriesData.GetRange(0, numberOfCountries) : countries.GetRange(0, numberOfCountries);
         }
