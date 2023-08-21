@@ -17,7 +17,7 @@ namespace UC_1.Models
         /// Common used name.
         /// </summary>
         [JsonPropertyName("common")]
-        public string? Common { get; set; }
+        public string Common { get; set; }
     }
     
     /// <summary>

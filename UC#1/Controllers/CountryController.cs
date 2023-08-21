@@ -28,11 +28,15 @@ namespace UC_1.Controllers
             string? nameSort = null,
             int numberOfPages = 0)
         {
-            var result = new List<Country>();
+            var result = countriesData;
 
             if (!string.IsNullOrWhiteSpace(nameFilter))
             {
-                result = GetCountriesFirteredByName(nameFilter);
+                var countriesFilteredByName = GetCountriesFirteredByName(nameFilter);
+                if (countriesFilteredByName != null)
+                {
+                    result = result.Where(x => countriesFilteredByName.Contains(x)).ToList();
+                }
             }
 
             if (populationFilter != 0)

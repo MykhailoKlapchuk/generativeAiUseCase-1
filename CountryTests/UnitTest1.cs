@@ -91,7 +91,7 @@ namespace CountryTests
             Assert.NotNull(result);
             Assert.NotEmpty(result);
             Assert.True(result.Count > 0);
-            Assert.True(result.First().Name.Common.StartsWith(firstLetter, StringComparison.InvariantCultureIgnoreCase));
+            Assert.StartsWith(firstLetter, result.First().Name.Common, StringComparison.InvariantCultureIgnoreCase);
         }
 
         [Fact]
