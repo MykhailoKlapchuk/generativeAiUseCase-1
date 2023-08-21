@@ -12,13 +12,13 @@ namespace UC_1.Models
         /// The root is +2
         /// </summary>
         [JsonPropertyName("root")]
-        public string Root { get; set; }
+        public string? Root { get; set; }
 
         /// <summary>
         /// Eg. The call prefix for Togo is +228.
         /// The suffixes are [28].
         /// </summary>
         [JsonPropertyName("suffixes")]
-        public string[] Suffixes { get; set; }
+        public string[]? Suffixes { get; set; }
     }
 }

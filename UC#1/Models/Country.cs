@@ -23,7 +23,7 @@ namespace UC_1.Models
         /// The alpha-2 code of the country.
         /// </summary>
         [JsonPropertyName("cca2")]
-        public string Cca2 { get; set; }
+        public string? Cca2 { get; set; }
 
         /// <summary>
         /// ISO 3166-1 numeric : https://en.wikipedia.org/wiki/ISO_3166-1_numeric
@@ -35,13 +35,13 @@ namespace UC_1.Models
         /// The alpha-3 code of the country.
         /// </summary>
         [JsonPropertyName("cca3")]
-        public string Cca3 { get; set; }
+        public string? Cca3 { get; set; }
 
         /// <summary>
         /// International Olympic Committee Code.
         /// </summary>
         [JsonPropertyName("cioc")]
-        public string Cioc { get; set; }
+        public string? Cioc { get; set; }
         
         /// <summary>
         /// Is the country independent?
@@ -59,7 +59,7 @@ namespace UC_1.Models
         /// Is the country member of the United Nations ?
         /// </summary>
         [JsonPropertyName("unMember")]
-        public bool UnMember { get; set; }
+        public bool? UnMember { get; set; }
 
         /// <summary>
         /// Currencies used in the country.
@@ -73,25 +73,25 @@ namespace UC_1.Models
         /// International direct dialing.
         /// </summary>
         [JsonPropertyName("idd")]
-        public Idd Idd { get; set; }
+        public Idd? Idd { get; set; }
 
         /// <summary>
         /// Capital(s) of the country.
         /// </summary>
         [JsonPropertyName("capital")]
-        public string[] Capital { get; set; }
+        public string[]? Capital { get; set; }
 
         /// <summary>
         /// Alternative spellings of the country.
         /// </summary>
         [JsonPropertyName("altSpellings")]
-        public string[] AltSpellings { get; set; }
+        public string[]? AltSpellings { get; set; }
 
         /// <summary>
         /// Region of the country (eg. Africa, Americas, Asia, Europe, Oceania, Antarctic).
         /// </summary>
         [JsonPropertyName("region")]
-        public string Region { get; set; }
+        public string? Region { get; set; }
 
         /// <summary>
         /// The subregion of the country(eg. Western Africa, Western Europe, ...)
@@ -137,25 +137,25 @@ namespace UC_1.Models
         /// </list>
         /// </summary>
         [JsonPropertyName("translations")]
-        public Dictionary<string, Translation> Translations { get; set; }
+        public Dictionary<string, Translation>? Translations { get; set; }
 
         /// <summary>
         /// Gps coordinates of the country in the format: [latitude, longitude].
         /// </summary>
         [JsonPropertyName("latlng")]
-        private double[] LatLng { get; set; }
+        private double[]? LatLng { get; set; }
 
         /// <summary>
         /// Is the country landlocked?
         /// </summary>
         [JsonPropertyName("landlocked")]
-        public bool Landlocked { get; set; }
+        public bool? Landlocked { get; set; }
 
         /// <summary>
         /// Neighboring countries.
         /// </summary>
         [JsonPropertyName("borders")]
-        public string[] Borders { get; set; }
+        public string[]? Borders { get; set; }
 
         /// <summary>
         /// The area of the country in square kilometers.
@@ -173,16 +173,16 @@ namespace UC_1.Models
         /// Unicode flag.
         /// </summary>
         [JsonPropertyName("flag")]
-        public string UnicodeFlag { get; set; }
+        public string? UnicodeFlag { get; set; }
 
         /// <summary>
         /// Google maps or OpenStreetMap link.
         /// </summary>
         [JsonPropertyName("maps")]
-        public Maps Maps { get; set; }
+        public Maps? Maps { get; set; }
         
         [JsonPropertyName("population")]
-        public int Population { get; set; }
+        public int? Population { get; set; }
 
         /// <summary>
         /// FIFA code.
@@ -200,7 +200,7 @@ namespace UC_1.Models
         /// List of timezones.
         /// </summary>
         [JsonPropertyName("timezones")]
-        public string[] Timezones { get; set; }
+        public string[]? Timezones { get; set; }
 
         /// <summary>
         /// Continent of the country. Only one continent is possible.
@@ -208,13 +208,13 @@ namespace UC_1.Models
         /// one continent. That's why it's an array.
         /// </summary>
         [JsonPropertyName("continents")]
-        public string[] Continents { get; set; }
+        public string[]? Continents { get; set; }
 
         /// <summary>
         /// Flag(Url) of the country in png and svg format.
         /// </summary>
         [JsonPropertyName("flags")]
-        public Flag Flag { get; set; }
+        public Flag? Flag { get; set; }
 
         // [JsonPropertyName("coatOfArms")]
         // public CoatOfArms CoatOfArms { get; set; }
@@ -223,13 +223,13 @@ namespace UC_1.Models
         /// The week start by which day ? (eg. Sunday, Monday, ...)
         /// </summary>
         [JsonPropertyName("startOfWeek")]
-        public string StartOfWeek { get; set; }
+        public string? StartOfWeek { get; set; }
 
         /// <summary>
         /// Capital details. (eg. latitude, longitude, ...)
         /// </summary>
         [JsonPropertyName("capitalInfo")]
-        public CapitalInformation CapitalInformation { get; set; }
+        public CapitalInformation? CapitalInformation { get; set; }
 
         /// <summary>
         /// Postal code information (eg. format, regex).

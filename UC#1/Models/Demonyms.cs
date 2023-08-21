@@ -29,13 +29,13 @@ namespace UC_1.Models
         /// Feminine form.
         /// </summary>
         [JsonPropertyName("f")]
-        public string F { get; set; }
+        public string? F { get; set; }
 
         /// <summary>
         /// Masculine form.
         /// </summary>
         [JsonPropertyName("m")]
-        public string M { get; set; }
+        public string? M { get; set; }
     }
 
 

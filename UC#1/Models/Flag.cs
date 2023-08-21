@@ -11,12 +11,12 @@ namespace UC_1.Models
         /// Url to the PNG flag.
         /// </summary>
         [JsonPropertyName("png")]
-        public string Png { get; set; }
+        public string? Png { get; set; }
         
         /// <summary>
         /// Url to the SVG flag.
         /// </summary>
         [JsonPropertyName("svg")]
-        public string Svg { get; set; }
+        public string? Svg { get; set; }
     }
 }

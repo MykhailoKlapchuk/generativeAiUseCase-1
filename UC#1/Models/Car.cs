@@ -11,12 +11,12 @@ namespace UC_1.Models
         /// Signs that can be found on the vehicle.
         /// </summary>
         [JsonPropertyName("signs")]
-        public string[] Signs { get; set; }
+        public string[]? Signs { get; set; }
 
         /// <summary>
         /// The name of the side of the road that traffic drives on: left or right.
         /// </summary>
         [JsonPropertyName("side")]
-        public string Side { get; set; }
+        public string? Side { get; set; }
     }
 }

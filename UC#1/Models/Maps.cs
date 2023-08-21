@@ -11,12 +11,12 @@ namespace UC_1.Models
         /// Google Maps location URL.
         /// </summary>
         [JsonPropertyName("googleMaps")]
-        public string GoogleMaps { get; set; }
+        public string? GoogleMaps { get; set; }
 
         /// <summary>
         /// Open Street Maps location URL.
         /// </summary>
         [JsonPropertyName("openStreetMaps")]
-        public string OpenStreetMaps { get; set; }
+        public string? OpenStreetMaps { get; set; }
     }
 }

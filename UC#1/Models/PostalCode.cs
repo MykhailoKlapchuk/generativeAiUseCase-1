@@ -11,12 +11,12 @@ namespace UC_1.Models
         /// The postal code format.
         /// </summary>
         [JsonPropertyName("format")]
-        public string Format { get; set; }
+        public string? Format { get; set; }
 
         /// <summary>
         /// Regex pattern for the postal code.
         /// </summary>
         [JsonPropertyName("regex")]
-        public string Regex { get; set; }
+        public string? Regex { get; set; }
     }
 }

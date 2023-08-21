@@ -11,13 +11,13 @@ namespace UC_1.Models
         /// Official name.
         /// </summary>
         [JsonPropertyName("official")]
-        public string Official { get; set; }
+        public string? Official { get; set; }
 
         /// <summary>
         /// Common used name.
         /// </summary>
         [JsonPropertyName("common")]
-        public string Common { get; set; }
+        public string? Common { get; set; }
     }
     
     /// <summary>

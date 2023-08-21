@@ -22,10 +22,10 @@ namespace UC_1.Controllers
 
         [HttpGet]
         [Route("[action]")]
-        public async Task<List<Country>> GetCountries(
-            string nameFilter = null,
+        public List<Country> GetCountries(
+            string? nameFilter = null,
             int populationFilter = 0,
-            string nameSort = null,
+            string? nameSort = null,
             int numberOfPages = 0)
         {
             var result = new List<Country>();
@@ -115,20 +115,21 @@ namespace UC_1.Controllers
             return EmptyCountryList;
         }
 
-        [HttpPost]
-        [Route("[action]")]
-        public List<Country> GetNumberOfCountries(int numberOfCountries, List<Country> countries = null)
+        private List<Country> GetNumberOfCountries(int numberOfCountries, List<Country>? countries = null)
         {
             if (numberOfCountries < 1)
             {
                 return EmptyCountryList;
             }
-
-            if (countries != null && numberOfCountries > countries.Count)
+            if (countries == null)
+            {
+                return countriesData.GetRange(0, numberOfCountries);
+            }
+            if (numberOfCountries > countries.Count)
             {
                 numberOfCountries = countries.Count;
             }
-            return countries == null ? countriesData.GetRange(0, numberOfCountries) : countries.GetRange(0, numberOfCountries);
+            return countries.GetRange(0, numberOfCountries);
         }
 
         private static async Task<List<Country>> GetCountriesData()

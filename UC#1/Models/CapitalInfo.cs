@@ -11,6 +11,6 @@ namespace UC_1.Models
         /// GPS coordinates of the capital. [latitude, longitude]
         /// </summary>
         [JsonPropertyName("latlng")]
-        private string[] Latlng { get; set; }
+        private string[]? Latlng { get; set; }
     }
 }
