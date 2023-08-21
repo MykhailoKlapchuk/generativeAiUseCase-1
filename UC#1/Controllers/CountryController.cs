@@ -115,7 +115,9 @@ namespace UC_1.Controllers
             return EmptyCountryList;
         }
 
-        private List<Country> GetNumberOfCountries(int numberOfCountries, List<Country>? countries = null)
+        [HttpPost]
+        [Route("[action]")]
+        public List<Country> GetNumberOfCountries(int numberOfCountries, List<Country>? countries = null)
         {
             if (numberOfCountries < 1)
             {
